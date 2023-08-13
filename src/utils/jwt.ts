@@ -1,14 +1,16 @@
-import jwt from 'jsonwebtoken';
+import jwt, { SignOptions } from 'jsonwebtoken';
 
 const secret = process.env.JWT_SECRET || 'secret';
 
 type TokenPayload = {
   id: number,
-  email: string,
+  username: string,
 };
 
+const jwtConfig: SignOptions = { algorithm: 'HS256', expiresIn: '60m' };
+
 function sign(payload: TokenPayload): string {
-  const token = jwt.sign(payload, secret);
+  const token = jwt.sign(payload, secret, jwtConfig);
   return token;
 }
 
