@@ -4,7 +4,7 @@ const secret = process.env.JWT_SECRET || 'secret';
 
 type TokenPayload = {
   id: number,
-  username: string,
+  name: string,
 };
 
 const jwtConfig: SignOptions = { algorithm: 'HS256', expiresIn: '60m' };

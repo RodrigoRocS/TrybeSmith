@@ -1,8 +1,9 @@
 import { Router } from 'express';
 import userController from '../controllers/user.controllers';
+import validateLogin from '../middlewares/validateLogin';
 
-const orderRoute = Router();
+const loginRoute = Router();
 
-orderRoute.get('/products', userController.login);
+loginRoute.post('/login', validateLogin, userController.login);
 
-export default orderRoute;
+export default loginRoute;

@@ -1,13 +1,14 @@
-import UserModel from '../database/models/user.model';
+import { Payload } from '../types/Payload';
 import { ServiceResponse } from '../types/ServiceResponse';
 import { Token } from '../types/Token';
-import { User } from '../types/User';
 import jwt from '../utils/jwt';
 
-async function signIn(user: User): Promise<ServiceResponse<Token>> {
-  const findUser = await UserModel.findOne({ where: { username: user.username } });
-  const { id, username } = findUser?.dataValues;
-  const token = jwt.sign({ id, username });
+async function signIn(payload: Payload): Promise<ServiceResponse<Token>> {
+  if (!payload) {
+    return { status: 'BAD_REQUEST', data: { message: 'Payload is undefined' } };  
+  }
+  const { id, name } = payload;
+  const token = jwt.sign({ id, name });
   return { status: 'SUCCESSFUL', data: { token } };
 }
   
