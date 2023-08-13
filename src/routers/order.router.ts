@@ -3,6 +3,6 @@ import orderController from '../controllers/order.controllers';
 
 const orderRoute = Router();
 
-orderRoute.get('/products', orderController.takeAllOrders);
+orderRoute.get('/orders', orderController.takeAllOrders);
 
 export default orderRoute;

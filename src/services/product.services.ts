@@ -9,6 +9,8 @@ async function createProduct(product: Product): Promise<ServiceResponse<Product>
 
 async function takeAllProducts(): Promise<ServiceResponse<ProductSequelizeModel[]>> {
   const allProducts = await ProductModel.findAll();
+  console.log(allProducts);
+  
   return { status: 'SUCCESSFUL', data: allProducts };
 }
   
